@@ -1,0 +1,9 @@
+<div class="album text-muted">
+    <div class="container">
+      <div class="row">
+        <div class="card">
+          <%= image_tag(@image.image.url, alt: 'Image') if @image.image? %>
+        </div>
+      </div>
+    </div>
+</div>

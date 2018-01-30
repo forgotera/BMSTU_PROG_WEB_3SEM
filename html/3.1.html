@@ -1,0 +1,177 @@
+<DOCTYPE html>
+    <html>
+        <head>
+            <tile>3.1</tile>
+            <meta http-equiv="Content-Type" content="text/html;
+            charset=utf-8" />
+
+            <script type="text/javascript">
+
+                var nameArray=[];
+                var firstWord = 0;
+
+                function createTable()
+                {
+                    var name = document.getElementById("nameTov").value;
+                    var price = document.getElementById("priceTov").value;
+                    firstWord++;
+                    addArray(name,price);
+
+                }
+
+                function createRow(name,price){
+                    var table = document.getElementById("table");
+                    var row = document.createElement("TR");
+                    table.appendChild(row);
+
+                    var nameColumn = document.createElement('TD');
+                    var priceColumn = document.createElement('TD');
+
+                    row.appendChild(nameColumn);
+                    row.appendChild(priceColumn);
+
+                    priceColumn.classList.add("table1");
+                    nameColumn.classList.add("cursor");
+
+                    nameColumn.innerHTML = name;
+                    priceColumn.innerHTML = price;
+
+                }
+
+                function addArray(name ,price){
+                    var buf;
+                    var kolvo = 0;
+                    for(var i = 0;i < nameArray.length; i++){
+                        buf = nameArray[i].split(',')
+                        if(buf[0]!=name){
+                            kolvo++;
+                        }
+                        if(kolvo==nameArray.length){
+                            nameArray.push(name+',1,'+String(price));
+                            createRow(name,price);
+                        }
+                            
+                    }
+                     if (firstWord==1){
+                        nameArray.push(name+',1,'+String(price));
+                        createRow(name,price);
+                    }
+                        
+                }
+
+                function chekSumm()
+                {
+                    var summ = 0;
+                    for(var i = 0; i<basketArray.length;i++){
+                        buf = basketArray[i].split(",");
+                        summ += buf[2]*buf[1];
+                    }
+                    document.getElementById('chek').innerHTML="Сумма:"+summ;
+                }
+
+                //buf[0]-name tovar
+                //buf[1]-number tovar
+                //buf[2]-price tovar
+                var kostul = -1;
+                var basketArray = [];
+                var id = [];
+                function basket(e){
+                    var buf;
+                    var hasWord = true ;
+
+                    var table = document.getElementById("basketTable");
+                    var row = document.createElement("TR");
+
+                    var nameColumn = document.createElement('TD');
+                    var priceColumn = document.createElement('TD');
+                    var numberColumn = document.createElement('TD'); 
+
+                    //если предмет уже есть в заказе ,увеличиваем кол-во и цену
+                    for(var i = 0; i<basketArray.length;i++){
+                        buf = basketArray[i].split(",");
+                        if(buf[0] == e.target.innerHTML){
+                            hasWord = false;
+                            buf[1]=Number(buf[1])+1;
+                            basketArray[i]=String(buf[0])+','+String(buf[1])+','+String(buf[2])+','+String(kostul);
+                           document.getElementById(i).innerHTML = buf[1];
+                           chekSumm();
+                        }
+                    }
+                      //если предмета нет в корзине-добавляем
+                    if(hasWord){
+                         for(var i = 0;i<nameArray.length;i++){
+                             buf = nameArray[i].split(",");
+                             if (buf[0] == e.target.innerHTML){
+                                row.appendChild(nameColumn);
+                                row.appendChild(priceColumn);
+                                row.appendChild(numberColumn);
+                                table.appendChild(row);
+
+                                nameColumn.innerHTML = buf[0];
+                                kostul++;
+                                basketArray[kostul]=String(buf[0])+','+String(buf[1])+','+String(buf[2])+','+String(kostul);
+                                id[kostul]=numberColumn.id = kostul;
+
+                                numberColumn.innerHTML = buf[1];
+                                priceColumn.innerHTML = buf[2];
+                                chekSumm();
+                            }
+                                    
+                        }
+                    }
+                        
+                }
+
+                   
+
+            </script>
+            <style type="text/css">
+
+                .table1{
+                    border: 1px;
+                    color: black;
+                }
+                .table1:hover{
+                    background: linear-gradient( #999999, #999999)
+                }
+                .cursor{
+                    cursor: pointer
+                }
+            </style>
+        </head>
+        <body>
+            <br>
+
+                Товар: <input type = "text" name = "tov" id="nameTov"> <br>
+                Цена: <input type = "text" name = "cen" id ="priceTov"> <br> 
+                      <input type ="submit" name = "sub" onclick="createTable()"> <br>
+
+                      <table id='table'>
+                        <thead>
+                            <tr>
+                                <th >Наименование</th>
+                                <th >Цена</th>
+                        </thead>
+                          
+                      </table >
+
+
+                <table id = 'basketTable'>
+                    <thead>
+                        <tr>
+                            <th> Наименование</th>
+                            <th>Цена</th>
+                            <th>Количество</th>
+                    </thead>
+                </table>
+
+                
+                <div id='chek'>
+                </div>
+
+            <script type="text/javascript">
+                document.getElementById ('table').addEventListener ('click', function (e) {if (e.target.tagName == 'TD')  basket(e) });
+            </script>
+
+        </body>
+    </html>

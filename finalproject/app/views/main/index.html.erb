@@ -1,0 +1,93 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Jumbotron Template for Bootstrap</title>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">#Твоё</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <ul class="navbar-nav mr-auto">
+  </ul>
+  <% if user_signed_in? %>
+      <p class="text-success" style="padding-right: 10px">Здравствуйте, <%= current_user.email%> </p>
+      <%= link_to 'Выйти', destroy_user_session_path,:method => :delete,
+                  :class=> 'btn btn-success'  %>
+  <% else %>
+     <div style="padding-right: 10px">  <%= link_to 'Войти' ,new_user_session_path,:class=> 'btn btn-success'%></div>
+      <%= link_to 'Зарегистрироваться', new_user_registration_path,:class=> 'btn btn-success'%>
+  <% end %>
+</nav>
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Добро пожаловать на проект #Твоё!</h1>
+      <p>На нашем сайте вы найдете сборник фотографий</p>
+      <div class="row" align="center">
+        <%= form_tag indeximage_path, :method =>'get' do  %>
+        <%= submit_tag 'Просмотеть каталог',:class=>"btn btn-primary btn-lg" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" >
+    <div class="col-md-4" align="center">
+      <h2 >Популярные фотографии</h2>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Красная осень</h2>
+        <p>Тест интеллекта представляет группа различных вопросов, целью которых является определение уровня интеллекта испытуемого. </p>
+      </div>
+      <div class="col-md-4">
+        <h2>В чем ваши главные плюсы и минусы?</h2>
+        <p> Мы все время выискиваем в себе недостатки и акцентируем внимание на своих отрицательных качествах. И почти никто не осознает, что в любом недостатке могут скрываться достоинства. Да, это возможно!  </p>
+      </div>
+      <div class="col-md-4">
+        <h2>Каков ваш внутренний возраст?</h2>
+        <p>Вы только начинаете жить, а уже чувствуете себя многоопытным человеком, которого трудно чем-то удивить. Или же вам «давно за …», но вы неизменно ощущаете в себе подростковый задор. Так сколько же вам лет на самом деле? Чтобы выяснить это, ответьте на вопросы нашего теста.</p>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-md-4">
+          <p><a class="btn btn-secondary" href="#" role="button">Подробнее »</a></p>
+        </div>
+        <div class="col-md-4">
+         <p><a class="btn btn-secondary" href="#" role="button">Подробнее »</a></p>
+        </div>
+        <div class="col-md-4">
+          <p><a class="btn btn-secondary" href="#" role="button">Подробнее »</a></p>
+        </div>
+      </div>
+    <hr>
+
+  </div> <!-- /container -->
+
+</main>
+
+<footer class="container">
+  <p>©192/164 Company 2017</p>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+
+
+</body></html>

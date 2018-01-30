@@ -1,0 +1,33 @@
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Signin Template for Bootstrap</title>
+
+</head>
+  <body>
+    <div class="container">
+    <h2 class="form-signin-heading">Добавить фото</h2>
+    <%= form_for @image,html:{multipart:true} do |f| %>
+
+      <div class="field">
+        <%= f.label :Название,:class=>'sr-only'%><br/>
+        <%= f.text_field :title,:class=> 'form-control',:placeholder=> 'Название' %><br/>
+      </div>
+
+      <div class="field">
+        <%= f.label :image, :class=>'sr-only' %>
+        <%= f.file_field :image, :class=> 'form-control' %><br/>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Добавить', :class=> 'btn btn-lg btn-primary' %>
+      </div>
+    <% end %>
+      <%= link_to 'Назад', indeximage_path  %>
+    </div>
+
+  </body>
+</html>
