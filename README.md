@@ -1,6 +1,6 @@
 # BMSTU_PROG_WEB_3SEM
 Программы по курсу "языки интернет программирования"
-## 1. ЛР 1,2 - HTML,CSS +JS
+## 1. ЛР 1,2 - HTML, CSS, JS
 ## 2. ЛР 3,4 - Ruby
 ## 3. ЛР 5-8 - Ruby on Rails
 ## 4. ЛР 9 - AJAX
